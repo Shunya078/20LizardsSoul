@@ -1,10 +1,11 @@
 <template>
   <div class="signup">
     <h2>Sign up</h2>
-    <input type="text" placeholder="Username" v-model="email">
-    <input type="password" placeholder="Password" v-model="password">
+    <input type="text" placeholder="Username" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
     <button>Register</button>
-    <p>Do you have an account?
+    <p>
+      Do you have an account?
       <router-link to="/signin">sign in now!!</router-link>
     </p>
   </div>
@@ -12,18 +13,19 @@
 
 <script>
 export default {
-  name: 'Signup',
-  data () {
+  name: "Signup",
+  data() {
     return {
-      email: '',
-      password: ''
-    }
-  }
-}
+      email: "",
+      password: "",
+    };
+  },
+};
 </script>
 
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
@@ -42,7 +44,7 @@ a {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 input {
   margin: 10px 0;
