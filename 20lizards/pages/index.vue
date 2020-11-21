@@ -93,7 +93,8 @@ export default {
   },
   mounted() {
     firestore
-      .collection("blog").orderBy("timestamp", "desc")
+      .collection("blog")
+      .orderBy("timestamp", "desc")
       .get()
       .then((querySnapshot) => {
         const outputAll = [];
