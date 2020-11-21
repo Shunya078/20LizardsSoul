@@ -66,8 +66,8 @@ export default {
         localStorage.removeItem("jwt");
         this.$router.push("/signin");
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
