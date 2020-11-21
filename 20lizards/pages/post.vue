@@ -53,6 +53,7 @@ export default {
         title: this.title,
         message: this.message,
         slug: this.generateUUID(),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       };
 
       // addの引数に保存したいデータを渡す
