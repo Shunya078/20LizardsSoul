@@ -91,17 +91,9 @@ export default {
       ],
     };
   },
-  methods: {
-    signOut: function () {
-      auth.signOut().then(() => {
-        localStorage.removeItem("jwt");
-        this.$router.push("/signin");
-      });
-    },
-  },
   mounted() {
     firestore
-      .collection("blog")
+      .collection("blog").orderBy("timestamp", "desc")
       .get()
       .then((querySnapshot) => {
         const outputAll = [];
