@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <button @click="signOut">Sign out</button>
     <button @click="apiPublic">public</button>
     <button @click="apiPrivate">private</button>
     <v-spacer style="margin-bottom: 2000px"/>
@@ -10,6 +11,9 @@
 
 <script>
 import axios from "axios";
+import firebase from "firebase";
+import { auth } from "../plugins/firebase";
+
 export default {
   name: "HelloWorld",
   data() {
@@ -18,6 +22,12 @@ export default {
     };
   },
   methods: {
+    signOut: function () {
+      auth.signOut().then(() => {
+        localStorage.removeItem("jwt");
+        this.$router.push("/signin");
+      });
+    },
     apiPublic: async function () {
       let res = await axios.get("http://localhost:8000/public");
       this.msg = res.data;

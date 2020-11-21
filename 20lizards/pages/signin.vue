@@ -1,17 +1,15 @@
 <template>
   <div class="signin">
-    <h2>Sign in</h2>
+    <h2>ログイン</h2>
     <input type="text" placeholder="email" v-model="email" />
     <input type="password" placeholder="Password" v-model="password" />
-    <button>Signin</button>
-    <p>
-      You don't have an account?
-      <router-link to="/signup">create account now!!</router-link>
-    </p>
+    <button @click="signIn">Signin</button>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
+import { auth } from "../plugins/firebase";
 export default {
   name: "Signin",
   data: function () {
@@ -19,6 +17,21 @@ export default {
       email: "",
       password: "",
     };
+  },
+  methods: {
+    signIn: function () {
+      auth.signInWithEmailAndPassword(this.email, this.password).then(
+        (res) => {
+          res.user.getIdToken().then((idToken) => {
+            localStorage.setItem("jwt", idToken.toString());
+          });
+          this.$router.push("/");
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
+    },
   },
 };
 </script>
