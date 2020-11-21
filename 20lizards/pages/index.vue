@@ -37,7 +37,7 @@
           <tr v-for="item in blogs" :key="item.name">
             <!-- imageができたら追加 -->
             <!-- <td>{{ item.title }}</td> -->
-            <td>{{ item.title }}</td>
+            <td><router-link class="button is-primary" v-bind:to="{ name: 'id', params: { id: item.slug }}">{{ item.title }}</router-link></td>
           </tr>
         </tbody>
       </template>
@@ -94,9 +94,7 @@ export default {
     },
   },
   mounted() {
-    const db = firestore;
-
-    db.collection("blog")
+    firestore.collection("blog")
       .get()
       .then((querySnapshot) => {
         const outputAll = [];
