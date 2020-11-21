@@ -24,6 +24,9 @@
         <v-card-text class="white--text pt-0">
           名古屋大学男子ラクロス部
         </v-card-text>
+        <v-btn color="white" text rounded class="my-2" @click="signOut">
+          SIGN OUT
+        </v-btn>
 
         <v-divider></v-divider>
 
@@ -37,6 +40,9 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import { auth } from "../plugins/firebase";
+
 export default {
   data() {
     return {
@@ -54,6 +60,14 @@ export default {
       links: ["Home", "Blog", "Contact Us"],
     };
   },
+  methods: {
+    signOut: function () {
+      auth.signOut().then(() => {
+        localStorage.removeItem("jwt");
+        this.$router.push("/signin");
+      });
+    }
+  }
 };
 </script>
 
