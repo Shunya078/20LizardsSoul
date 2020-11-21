@@ -6,12 +6,16 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "base_login": "firebase login",
+    "base_init": "firebase init",
+    "base_deploy": "firebase deploy"
   },
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "firebase": "^8.1.1",
+    "firebase-tools": "^8.16.2",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
