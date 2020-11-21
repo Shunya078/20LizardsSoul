@@ -57,6 +57,5 @@ export default {
 <style scoped>
 #fontSetting {
   font-family: "ヒラギノ丸ゴ Pro";
-  font-size: 50px;
 }
 </style>
