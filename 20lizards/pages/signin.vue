@@ -1,36 +1,31 @@
 <template>
   <div class="signin">
-    <v-card
-    class="mx-auto my-12"
-    width="374"
-    >
-    <v-form
-    ref="form"
-    >
-    <v-card-title>ログイン認証</v-card-title>
-    <div
-    class="text-center"
-    >
-    <v-col
-        cols="12"
-        md="6"
-      >
-    <v-text-field type="text" placeholder="Email" v-model="email" required />
-    <v-text-field type="password" placeholder="Password" v-model="password" required />
-    </v-col>
-    </div>
-    <v-card-actions class="d-flex justify-center mb-8">
-    <v-btn
-      color="warning"
-      @click="signIn"
-      large
-      width="200"
-    >
-      LOGIN
-    </v-btn>
-    </v-card-actions>
-  </v-form>
-  </v-card>
+    <v-card class="mx-auto my-12" width="374">
+      <v-form ref="form">
+        <v-card-title>ログイン認証</v-card-title>
+        <div class="text-center">
+          <v-col cols="12" md="6">
+            <v-text-field
+              type="text"
+              placeholder="Email"
+              v-model="email"
+              required
+            />
+            <v-text-field
+              type="password"
+              placeholder="Password"
+              v-model="password"
+              required
+            />
+          </v-col>
+        </div>
+        <v-card-actions class="d-flex justify-center mb-8">
+          <v-btn color="warning" @click="signIn" large width="200">
+            LOGIN
+          </v-btn>
+        </v-card-actions>
+      </v-form>
+    </v-card>
   </div>
 </template>
 
