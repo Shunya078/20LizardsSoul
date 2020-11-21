@@ -3,6 +3,7 @@
     <h1 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">
       {{ title }}
     </h1>
+    <div style="margin-top: 20px"></div>
     <p>{{ message }}</p>
   </div>
 </template>
@@ -75,5 +76,8 @@ a {
 button {
   margin: 10px 0;
   padding: 10px;
+}
+p {
+  white-space: pre-wrap;
 }
 </style>
