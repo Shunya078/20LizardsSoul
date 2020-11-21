@@ -56,7 +56,7 @@ export default {
     return {
       blogs: [],
       name: auth.currentUser.email,
-      msg: "名古屋大学男子ラクロス部 20Lizards",
+      msg: "名古屋大学男子ラクロス部 20Lizards -REBIRTH-",
       home: {
         title: "HOME",
         to: "/post",
