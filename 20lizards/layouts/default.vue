@@ -1,14 +1,14 @@
 <template>
   <v-app light>
     <div id="fontSetting">
-    <v-app-bar :clipped-left="clipped" fixed app class="grey lighten-1">
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-toolbar-title v-text="home.title" />
-      <v-btn icon to="/">
-        <v-icon>mdi-home-account</v-icon>
-      </v-btn>
-    </v-app-bar>
+      <v-app-bar :clipped-left="clipped" fixed app class="grey lighten-1">
+        <v-toolbar-title v-text="title" />
+        <v-spacer />
+        <v-toolbar-title v-text="home.title" />
+        <v-btn icon to="/">
+          <v-icon>mdi-home-account</v-icon>
+        </v-btn>
+      </v-app-bar>
     </div>
     <v-main>
       <v-container>
@@ -21,12 +21,15 @@
           {{ home.title }}
         </v-btn>
 
-        <v-card-text class="white--text pt-0"> 名古屋大学男子ラクロス部 </v-card-text>
+        <v-card-text class="white--text pt-0">
+          名古屋大学男子ラクロス部
+        </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>Made by Shunya's Otsubo</strong>
+          {{ new Date().getFullYear() }} —
+          <strong>Made by Shunya's Otsubo</strong>
         </v-card-text>
       </v-card>
     </v-footer>
