@@ -52,7 +52,7 @@ export default {
       const saveData = {
         title: this.title,
         message: this.message,
-        slug: this.generateUUID()
+        slug: this.generateUUID(),
       };
 
       // addの引数に保存したいデータを渡す
@@ -69,15 +69,18 @@ export default {
 
       this.showMessage = true;
     },
-    generateUUID () {
+    generateUUID() {
       let d = new Date().getTime();
-      let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        let r = (d + Math.random() * 16) % 16 | 0
-        d = Math.floor(d / 16)
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
-      });
+      let uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+          let r = (d + Math.random() * 16) % 16 | 0;
+          d = Math.floor(d / 16);
+          return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
       return uuid;
-    }
+    },
   },
 };
 </script>

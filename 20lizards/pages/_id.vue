@@ -3,7 +3,7 @@
     <h1 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">
       {{ title }}
     </h1>
-    <p>{{message}}</p>
+    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -20,29 +20,37 @@ export default {
       message: "",
     };
   },
-  beforeRouteEnter (to, from, next) {
-      firestore.collection('blog').where('slug', '==', to.params.id).get().then((querySnapshot) => {
+  beforeRouteEnter(to, from, next) {
+    firestore
+      .collection("blog")
+      .where("slug", "==", to.params.id)
+      .get()
+      .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          next(vm => {
-            vm.title = doc.data().title
-            vm.message = doc.data().message
-          })
-        })
-      })
-    },
-    watch: {
-      '$route': 'fetchData'
-    },
-    methods: {
-      fetchData () {
-        firestore.collection('blog').where('slug', '==', this.$route.params.id).get().then((querySnapshot) => {
+          next((vm) => {
+            vm.title = doc.data().title;
+            vm.message = doc.data().message;
+          });
+        });
+      });
+  },
+  watch: {
+    $route: "fetchData",
+  },
+  methods: {
+    fetchData() {
+      firestore
+        .collection("blog")
+        .where("slug", "==", this.$route.params.id)
+        .get()
+        .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            this.title = doc.data().title
-            this.message = doc.data().message
-          })
-        })
-      }
-    }
+            this.title = doc.data().title;
+            this.message = doc.data().message;
+          });
+        });
+    },
+  },
 };
 </script>
 
