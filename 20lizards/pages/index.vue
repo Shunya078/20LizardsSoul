@@ -13,12 +13,17 @@
       </v-carousel>
     </template>
     <div style="margin-top: 20px"></div>
-    <h2 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">{{ msg }}</h2>
-    <div v-if="name =='20lizard_admin@gmail.com'" class="d-flex justify-center mb-8">
-    <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
-          POST
-        </v-btn>
-        </div>
+    <h2 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">
+      {{ msg }}
+    </h2>
+    <div
+      v-if="name == '20lizard_admin@gmail.com'"
+      class="d-flex justify-center mb-8"
+    >
+      <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
+        POST
+      </v-btn>
+    </div>
     <v-simple-table>
       <template v-slot:default>
         <thead>
