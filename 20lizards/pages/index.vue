@@ -9,6 +9,11 @@
     </template>
     <div style="margin-top: 20px"></div>
     <h2 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">{{ msg }}</h2>
+    <div v-if="name =='20lizard_admin@gmail.com'" class="d-flex justify-center mb-8">
+    <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
+          POST
+        </v-btn>
+        </div>
     <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -43,7 +48,12 @@ export default {
   name: "HelloWorld",
   data() {
     return {
+      name: firebase.auth().currentUser.email,
       msg: "名古屋大学男子ラクロス部 20Lizards",
+      home: {
+        title: "HOME",
+        to: "/post",
+      },
       images: [
           {
             src: 'https://user-images.githubusercontent.com/50067752/99872103-c88b1380-2c22-11eb-810d-ff4ddcfa0d70.jpg',
