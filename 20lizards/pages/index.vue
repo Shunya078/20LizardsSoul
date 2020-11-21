@@ -5,7 +5,7 @@
     <button @click="signOut">Sign out</button>
     <button @click="apiPublic">public</button>
     <button @click="apiPrivate">private</button>
-    <v-spacer style="margin-bottom: 2000px"/>
+    <v-spacer style="margin-bottom: 2000px" />
   </div>
 </template>
 
