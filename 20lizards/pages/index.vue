@@ -1,89 +1,168 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div class="hello">
+    <template>
+      <v-carousel cycle height="300" show-arrows-on-hover>
+        <v-carousel-item
+          v-for="(item, i) in images"
+          :key="i"
+          :src="item.src"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        >
+        </v-carousel-item>
+      </v-carousel>
+    </template>
+    <div style="margin-top: 20px"></div>
+    <h2 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">
+      {{ msg }}
+    </h2>
+    <div
+      v-if="name == '20lizard_admin@gmail.com'"
+      class="d-flex justify-center mb-8"
+    >
+      <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
+        POST
+      </v-btn>
+    </div>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left"></th>
+            <th class="text-left">Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in blogs" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.name }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import axios from "axios";
+import firebase from "firebase";
+import { auth } from "../plugins/firebase";
 
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
-}
+  name: "HelloWorld",
+  data() {
+    return {
+      name: firebase.auth().currentUser.email,
+      msg: "名古屋大学男子ラクロス部 20Lizards",
+      home: {
+        title: "HOME",
+        to: "/post",
+      },
+      images: [
+        {
+          src:
+            "https://user-images.githubusercontent.com/50067752/99872103-c88b1380-2c22-11eb-810d-ff4ddcfa0d70.jpg",
+        },
+        {
+          src:
+            "https://user-images.githubusercontent.com/50067752/99872106-cd4fc780-2c22-11eb-8da1-a4b611ac505e.jpg",
+        },
+        {
+          src:
+            "https://user-images.githubusercontent.com/50067752/99872107-d0e34e80-2c22-11eb-9299-ee4e9abf08e8.jpg",
+        },
+        {
+          src:
+            "https://user-images.githubusercontent.com/50067752/99872108-d2147b80-2c22-11eb-85f8-b9d296fbeb53.jpg",
+        },
+        {
+          src:
+            "https://user-images.githubusercontent.com/50067752/99872109-d2ad1200-2c22-11eb-888e-32c290bc0fc3.jpg",
+        },
+      ],
+      blogs: [
+        {
+          name: "Frozen Yogurt",
+          calories: 159,
+        },
+        {
+          name: "Ice cream sandwich",
+          calories: 237,
+        },
+        {
+          name: "Eclair",
+          calories: 262,
+        },
+        {
+          name: "Cupcake",
+          calories: 305,
+        },
+        {
+          name: "Gingerbread",
+          calories: 356,
+        },
+        {
+          name: "Jelly bean",
+          calories: 375,
+        },
+        {
+          name: "Lollipop",
+          calories: 392,
+        },
+        {
+          name: "Honeycomb",
+          calories: 408,
+        },
+        {
+          name: "Donut",
+          calories: 452,
+        },
+        {
+          name: "KitKat",
+          calories: 518,
+        },
+      ],
+    };
+  },
+  methods: {
+    signOut: function () {
+      auth.signOut().then(() => {
+        localStorage.removeItem("jwt");
+        this.$router.push("/signin");
+      });
+    },
+    apiPublic: async function () {
+      let res = await axios.get("http://localhost:8000/public");
+      this.msg = res.data;
+    },
+    apiPrivate: async function () {
+      let res = await axios.get("http://localhost:8000/private");
+      this.msg = res.data;
+    },
+  },
+};
 </script>
+
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
+<style scoped>
+h1,
+h2 {
+  font-weight: normal;
+  font-family: "ヒラギノ丸ゴ Pro";
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+button {
+  margin: 10px 0;
+  padding: 10px;
+}
+</style>
