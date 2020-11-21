@@ -28,14 +28,16 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-left"></th>
+            <!-- imageができたら追加 -->
+            <!-- <th class="text-left"></th> -->
             <th class="text-left">Title</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in blogs" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td>{{ item.name }}</td>
+            <!-- imageができたら追加 -->
+            <!-- <td>{{ item.title }}</td> -->
+            <td>{{ item.title }}</td>
           </tr>
         </tbody>
       </template>
@@ -46,13 +48,14 @@
 <script>
 import axios from "axios";
 import firebase from "firebase";
-import { auth } from "../plugins/firebase";
+import { auth, firestore} from "../plugins/firebase";
 
 export default {
   name: "HelloWorld",
   data() {
     return {
-      name: firebase.auth().currentUser.email,
+      blogs: [],
+      name: auth.currentUser.email,
       msg: "名古屋大学男子ラクロス部 20Lizards",
       home: {
         title: "HOME",
@@ -80,48 +83,6 @@ export default {
             "https://user-images.githubusercontent.com/50067752/99872109-d2ad1200-2c22-11eb-888e-32c290bc0fc3.jpg",
         },
       ],
-      blogs: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-        },
-        {
-          name: "Donut",
-          calories: 452,
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-        },
-      ],
     };
   },
   methods: {
@@ -131,15 +92,18 @@ export default {
         this.$router.push("/signin");
       });
     },
-    apiPublic: async function () {
-      let res = await axios.get("http://localhost:8000/public");
-      this.msg = res.data;
-    },
-    apiPrivate: async function () {
-      let res = await axios.get("http://localhost:8000/private");
-      this.msg = res.data;
-    },
   },
+  mounted(){
+      const db = firestore;
+
+      db.collection('blog').get().then((querySnapshot) => {
+        const outputAll = [];
+        querySnapshot.forEach((doc) => {
+          outputAll.push(doc.data())
+        })
+        this.blogs = outputAll;
+      });
+  }
 };
 </script>
 
