@@ -48,7 +48,7 @@
 <script>
 import axios from "axios";
 import firebase from "firebase";
-import { auth, firestore} from "../plugins/firebase";
+import { auth, firestore } from "../plugins/firebase";
 
 export default {
   name: "HelloWorld",
@@ -93,17 +93,19 @@ export default {
       });
     },
   },
-  mounted(){
-      const db = firestore;
+  mounted() {
+    const db = firestore;
 
-      db.collection('blog').get().then((querySnapshot) => {
+    db.collection("blog")
+      .get()
+      .then((querySnapshot) => {
         const outputAll = [];
         querySnapshot.forEach((doc) => {
-          outputAll.push(doc.data())
-        })
+          outputAll.push(doc.data());
+        });
         this.blogs = outputAll;
       });
-  }
+  },
 };
 </script>
 
