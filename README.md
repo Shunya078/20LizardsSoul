@@ -19,3 +19,9 @@ create-nuxt-app v3.4.0
 ? What is your GitHub username? shunya078
 ? Version control system: Git
 ```
+
+Build App
+```
+$ yarn generate
+$ yarn base_deploy
+```

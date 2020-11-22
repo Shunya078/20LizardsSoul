@@ -43,6 +43,14 @@
                 v-bind:to="{ name: 'id', params: { id: item.slug } }"
                 >{{ item.title }}</router-link
               >
+              <div
+              v-if="name == '20lizard_admin@gmail.com'"
+              class="my-2 d-flex justify-end"
+              >
+              <v-btn color="error" rounded class="my-2 d-flex justify-center" :to="home.to" large width="20">
+                DELETE
+              </v-btn>
+            </div>
             </td>
           </tr>
         </tbody>
