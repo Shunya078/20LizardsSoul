@@ -44,8 +44,8 @@
                 >{{ item.title }}</router-link
               >
               <div
-              v-if="name == '20lizard_admin@gmail.com'"
-              class="my-2 d-flex justify-end"
+                v-if="name == '20lizard_admin@gmail.com'"
+                class="my-2 d-flex justify-end"
               >
               <v-btn color="error" rounded class="my-2 d-flex justify-center" @click="deleteBlog(item.slug)" large width="20">
                 DELETE
