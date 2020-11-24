@@ -24,6 +24,9 @@
         POST
       </v-btn>
     </div>
+    <p v-if="showMessage" style="margin-top: 20px">
+        フォームが正常に削除されました。
+      </p>
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -78,6 +81,7 @@ export default {
       blogs: [],
       name: auth.currentUser.email,
       msg: "名古屋大学男子ラクロス部 20Lizards -REBIRTH-",
+      showMessage: false,
       home: {
         title: "HOME",
         to: "/post",
@@ -126,6 +130,7 @@ export default {
               });
           });
         });
+      this.showMessage = true;
     },
   },
   mounted() {
