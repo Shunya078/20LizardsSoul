@@ -25,8 +25,8 @@
       </v-btn>
     </div>
     <p v-if="showMessage" style="margin-top: 20px">
-        フォームが正常に削除されました。
-      </p>
+      フォームが正常に削除されました。
+    </p>
     <v-simple-table>
       <template v-slot:default>
         <thead>
