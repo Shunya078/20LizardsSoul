@@ -43,6 +43,21 @@
                 v-bind:to="{ name: 'id', params: { id: item.slug } }"
                 >{{ item.title }}</router-link
               >
+              <div
+                v-if="name == '20lizard_admin@gmail.com'"
+                class="my-2 d-flex justify-end"
+              >
+                <v-btn
+                  color="error"
+                  rounded
+                  class="my-2 d-flex justify-center"
+                  @click="deleteBlog(item.slug)"
+                  large
+                  width="20"
+                >
+                  DELETE
+                </v-btn>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -90,6 +105,28 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    deleteBlog: function (uid) {
+      firestore
+        .collection("blog")
+        .where("slug", "==", uid)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            firestore
+              .collection("blog")
+              .doc(doc.id)
+              .delete()
+              .then(function () {
+                console.log("Document successfully deleted!");
+              })
+              .catch(function (error) {
+                console.error("Error removing document: ", error);
+              });
+          });
+        });
+    },
   },
   mounted() {
     firestore
