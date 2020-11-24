@@ -47,7 +47,7 @@
               v-if="name == '20lizard_admin@gmail.com'"
               class="my-2 d-flex justify-end"
               >
-              <v-btn color="error" rounded class="my-2 d-flex justify-center" :to="home.to" large width="20">
+              <v-btn color="error" rounded class="my-2 d-flex justify-center" @click="deleteBlog(item.slug)" large width="20">
                 DELETE
               </v-btn>
             </div>
@@ -98,6 +98,25 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    deleteBlog: function(uid){
+      firestore
+        .collection("blog")
+        .where("slug", "==", uid)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            firestore
+            .collection("blog")
+            .doc(doc.id).delete().then(function() {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+          });
+        });
+    },
   },
   mounted() {
     firestore
