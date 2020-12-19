@@ -16,10 +16,7 @@
     <h2 class="text-center" style="font-family: 'ヒラギノ丸ゴ Pro'">
       {{ msg }}
     </h2>
-    <div
-      v-if="name == '{admin の URL}"
-      class="d-flex justify-center mb-8"
-    >
+    <div v-if="name == '{admin の URL}" class="d-flex justify-center mb-8">
       <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
         POST
       </v-btn>
