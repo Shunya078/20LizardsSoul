@@ -17,7 +17,7 @@
       {{ msg }}
     </h2>
     <div
-      v-if="name == '20lizard_admin@gmail.com'"
+      v-if="name == '{admin の URL}"
       class="d-flex justify-center mb-8"
     >
       <v-btn color="error" rounded class="my-2" :to="home.to" large width="200">
